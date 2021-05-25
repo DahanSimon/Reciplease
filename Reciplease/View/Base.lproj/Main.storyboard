@@ -8,6 +8,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Montserrat-Regular.ttf">
+            <string>Montserrat-Regular</string>
+        </array>
         <array key="Montserrat-SemiBold.ttf">
             <string>Montserrat-SemiBold</string>
         </array>
@@ -52,7 +55,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Try enter some ingredients" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="kXG-fD-hx6">
                                 <rect key="frame" x="35" y="247.5" width="344" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="8zX-3h-xFR"/>
+                                    <constraint firstAttribute="height" constant="60" id="9Cg-Pb-SXb"/>
                                 </constraints>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="15"/>
@@ -61,42 +64,105 @@
                                     <outlet property="delegate" destination="dpE-vT-igB" id="rj8-nv-iwb"/>
                                 </connections>
                             </textField>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Jyk-jc-JOP">
-                                <rect key="frame" x="35" y="317.5" width="344" height="485.5"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Jyk-jc-JOP">
+                                <rect key="frame" x="50" y="350" width="314" height="358"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="IngredientCell" id="Jyo-b0-94j">
-                                        <rect key="frame" x="0.0" y="24.5" width="344" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="IngredientCell" id="Jyo-b0-94j" customClass="IngredientListTableViewCell" customModule="Reciplease" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="24.5" width="314" height="20"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Jyo-b0-94j" id="bw5-DO-cm4">
-                                            <rect key="frame" x="0.0" y="0.0" width="344" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="314" height="20"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vr5-NP-HPy" userLabel="CustomView" customClass="ListCustomView" customModule="Reciplease">
+                                                    <rect key="frame" x="10" y="10" width="294" height="0.0"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="topColor">
+                                                            <color key="value" systemColor="opaqueSeparatorColor"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
+                                                            <color key="value" red="1" green="0.2527923882" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                            <color key="value" red="0.98900777100000004" green="0.82713085409999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowX">
+                                                            <real key="value" value="12"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowY">
+                                                            <real key="value" value="11"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowBlur">
+                                                            <real key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="startPointX">
+                                                            <real key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="startPointY">
+                                                            <real key="value" value="9"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="endPointX">
+                                                            <real key="value" value="9"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="endPointY">
+                                                            <real key="value" value="8"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="14"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="vr5-NP-HPy" secondAttribute="bottom" constant="10" id="8Kn-H3-s1S"/>
+                                                <constraint firstAttribute="trailing" secondItem="vr5-NP-HPy" secondAttribute="trailing" constant="10" id="GwD-So-XIn"/>
+                                                <constraint firstItem="vr5-NP-HPy" firstAttribute="leading" secondItem="bw5-DO-cm4" secondAttribute="leading" constant="10" id="Ks8-J5-1rd"/>
+                                                <constraint firstItem="vr5-NP-HPy" firstAttribute="top" secondItem="bw5-DO-cm4" secondAttribute="top" constant="10" id="R76-Yh-0m3"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="customView" destination="vr5-NP-HPy" id="PGD-8b-hEW"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="dpE-vT-igB" id="Ym1-fh-VPu"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CPV-lz-bSA" customClass="CustomUIButton" customModule="Reciplease" customModuleProvider="target">
+                                <rect key="frame" x="10" y="753" width="394" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="BBI-CL-k6a"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="25"/>
+                                <state key="normal" title="Find Recipe">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ASV-bu-1y2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="Img-LO-6Lt" firstAttribute="trailing" secondItem="qdJ-nw-vIc" secondAttribute="trailing" id="1he-df-NtW"/>
-                            <constraint firstItem="Jyk-jc-JOP" firstAttribute="trailing" secondItem="kXG-fD-hx6" secondAttribute="trailing" id="7QW-Gt-aTf"/>
-                            <constraint firstItem="kXG-fD-hx6" firstAttribute="centerX" secondItem="VrT-Mj-tjG" secondAttribute="centerX" id="9fd-zC-ofO"/>
-                            <constraint firstItem="qdJ-nw-vIc" firstAttribute="leading" secondItem="ASV-bu-1y2" secondAttribute="leading" constant="20" id="DbQ-yy-dTa"/>
-                            <constraint firstItem="Jyk-jc-JOP" firstAttribute="leading" secondItem="kXG-fD-hx6" secondAttribute="leading" id="H4u-zP-fCY"/>
-                            <constraint firstItem="kXG-fD-hx6" firstAttribute="leading" secondItem="ASV-bu-1y2" secondAttribute="leading" constant="35" id="Inr-zu-hB2"/>
-                            <constraint firstItem="ASV-bu-1y2" firstAttribute="trailing" secondItem="qdJ-nw-vIc" secondAttribute="trailing" constant="100" id="LUs-IS-YX3"/>
-                            <constraint firstItem="Img-LO-6Lt" firstAttribute="top" secondItem="qdJ-nw-vIc" secondAttribute="bottom" constant="5" id="Qwt-1m-dqn"/>
-                            <constraint firstItem="ASV-bu-1y2" firstAttribute="trailing" secondItem="kXG-fD-hx6" secondAttribute="trailing" constant="35" id="V19-CO-Ugm"/>
-                            <constraint firstItem="Img-LO-6Lt" firstAttribute="leading" secondItem="qdJ-nw-vIc" secondAttribute="leading" id="h5i-1W-SXw"/>
-                            <constraint firstItem="kXG-fD-hx6" firstAttribute="top" secondItem="Img-LO-6Lt" secondAttribute="bottom" constant="50" id="j6x-vn-0oT"/>
-                            <constraint firstItem="Jyk-jc-JOP" firstAttribute="top" secondItem="kXG-fD-hx6" secondAttribute="bottom" constant="10" id="l2a-1z-Aiv"/>
-                            <constraint firstItem="qdJ-nw-vIc" firstAttribute="top" secondItem="ASV-bu-1y2" secondAttribute="top" constant="100" id="sjf-C7-vSq"/>
-                            <constraint firstItem="ASV-bu-1y2" firstAttribute="bottom" secondItem="Jyk-jc-JOP" secondAttribute="bottom" constant="10" id="yF6-77-gvY"/>
+                            <constraint firstItem="kXG-fD-hx6" firstAttribute="leading" secondItem="ASV-bu-1y2" secondAttribute="leading" constant="35" id="1gJ-w8-IK2"/>
+                            <constraint firstItem="ASV-bu-1y2" firstAttribute="trailing" secondItem="Jyk-jc-JOP" secondAttribute="trailing" constant="50" id="5nP-rh-WPr"/>
+                            <constraint firstItem="Jyk-jc-JOP" firstAttribute="top" secondItem="kXG-fD-hx6" secondAttribute="bottom" constant="42.5" id="8pP-Sg-po0"/>
+                            <constraint firstItem="kXG-fD-hx6" firstAttribute="centerX" secondItem="VrT-Mj-tjG" secondAttribute="centerX" id="D7t-el-zoK"/>
+                            <constraint firstItem="kXG-fD-hx6" firstAttribute="top" secondItem="Img-LO-6Lt" secondAttribute="bottom" constant="50" id="JIs-7d-85v"/>
+                            <constraint firstItem="qdJ-nw-vIc" firstAttribute="leading" secondItem="Img-LO-6Lt" secondAttribute="leading" id="KcL-kg-yhU"/>
+                            <constraint firstItem="Img-LO-6Lt" firstAttribute="top" secondItem="qdJ-nw-vIc" secondAttribute="bottom" constant="5" id="KmL-w0-GLH"/>
+                            <constraint firstItem="qdJ-nw-vIc" firstAttribute="trailing" secondItem="Img-LO-6Lt" secondAttribute="trailing" id="ULC-XZ-8fN"/>
+                            <constraint firstItem="CPV-lz-bSA" firstAttribute="leading" secondItem="ASV-bu-1y2" secondAttribute="leading" constant="10" id="ZkX-Cq-6yk"/>
+                            <constraint firstItem="kXG-fD-hx6" firstAttribute="centerX" secondItem="CPV-lz-bSA" secondAttribute="centerX" id="aw3-s5-ZVd"/>
+                            <constraint firstItem="ASV-bu-1y2" firstAttribute="trailing" secondItem="qdJ-nw-vIc" secondAttribute="trailing" constant="100" id="ikW-FK-EwD"/>
+                            <constraint firstItem="qdJ-nw-vIc" firstAttribute="top" secondItem="ASV-bu-1y2" secondAttribute="top" constant="100" id="jvi-sR-OUi"/>
+                            <constraint firstItem="Jyk-jc-JOP" firstAttribute="leading" secondItem="ASV-bu-1y2" secondAttribute="leading" constant="50" id="w7L-SC-q2J"/>
+                            <constraint firstItem="ASV-bu-1y2" firstAttribute="bottom" secondItem="CPV-lz-bSA" secondAttribute="bottom" constant="10" id="w7g-UL-qM4"/>
+                            <constraint firstItem="CPV-lz-bSA" firstAttribute="top" secondItem="Jyk-jc-JOP" secondAttribute="bottom" constant="45" id="xy9-hb-rhj"/>
+                            <constraint firstItem="qdJ-nw-vIc" firstAttribute="leading" secondItem="VrT-Mj-tjG" secondAttribute="leadingMargin" id="zOI-RE-Fas"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 1" selectedImage="magnifyingglass" catalog="system" id="KDx-mZ-Gzi" userLabel="Search"/>
@@ -113,7 +179,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-399" y="609"/>
+            <point key="canvasLocation" x="-400.00000000000006" y="608.70535714285711"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="B9D-02-ptG">
@@ -136,6 +202,9 @@
     </scenes>
     <resources>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

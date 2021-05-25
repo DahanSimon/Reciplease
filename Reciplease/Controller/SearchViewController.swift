@@ -8,14 +8,15 @@
 import UIKit
 
 class SearchViewController: UIViewController {
-
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.tableView.rowHeight = 70
+        
     }
+    
     var ingredients: [String] = []
 }
 
@@ -30,7 +31,9 @@ extension SearchViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath) as? IngredientListTableViewCell else {
+            return UITableViewCell()
+        }
         
         let ingredient = ingredients[indexPath.row]
         cell.textLabel?.text = ingredient
@@ -38,7 +41,13 @@ extension SearchViewController: UITableViewDataSource {
         
         return cell
     }
-    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            self.ingredients.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+        
 }
 
 extension SearchViewController: UITextFieldDelegate {

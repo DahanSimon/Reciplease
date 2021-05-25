@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		6B0C20A2265D61100015283C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C20A1265D61100015283C /* AppDelegate.swift */; };
 		6B0C20A4265D61100015283C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C20A3265D61100015283C /* SceneDelegate.swift */; };
-		6B0C20A6265D61100015283C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C20A5265D61100015283C /* ViewController.swift */; };
 		6B0C20A9265D61100015283C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B0C20A7265D61100015283C /* Main.storyboard */; };
 		6B0C20AC265D61100015283C /* Reciplease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C20AA265D61100015283C /* Reciplease.xcdatamodeld */; };
 		6B0C20AE265D61110015283C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B0C20AD265D61110015283C /* Assets.xcassets */; };
@@ -19,6 +18,9 @@
 		6B0C20DB265D65FF0015283C /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6B0C20DA265D65FF0015283C /* Montserrat-Regular.ttf */; };
 		6B0C20DD265D67290015283C /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6B0C20DC265D67290015283C /* Montserrat-SemiBold.ttf */; };
 		6B0C20DF265D6BA10015283C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C20DE265D6BA10015283C /* SearchViewController.swift */; };
+		6B0C20E1265D83720015283C /* CustomUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C20E0265D83720015283C /* CustomUIButton.swift */; };
+		6B0C20E3265D9E080015283C /* IngredientListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C20E2265D9E080015283C /* IngredientListTableViewCell.swift */; };
+		6B0C20E5265DA59C0015283C /* ListCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C20E4265DA59C0015283C /* ListCustomView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +44,6 @@
 		6B0C209E265D61100015283C /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B0C20A1265D61100015283C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6B0C20A3265D61100015283C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		6B0C20A5265D61100015283C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		6B0C20A8265D61100015283C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6B0C20AB265D61100015283C /* Reciplease.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Reciplease.xcdatamodel; sourceTree = "<group>"; };
 		6B0C20AD265D61110015283C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -57,6 +58,9 @@
 		6B0C20DA265D65FF0015283C /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		6B0C20DC265D67290015283C /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		6B0C20DE265D6BA10015283C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		6B0C20E0265D83720015283C /* CustomUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIButton.swift; sourceTree = "<group>"; };
+		6B0C20E2265D9E080015283C /* IngredientListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientListTableViewCell.swift; sourceTree = "<group>"; };
+		6B0C20E4265DA59C0015283C /* ListCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCustomView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,8 @@
 		6B0C20A0265D61100015283C /* Reciplease */ = {
 			isa = PBXGroup;
 			children = (
+				6B0C20DC265D67290015283C /* Montserrat-SemiBold.ttf */,
+				6B0C20DA265D65FF0015283C /* Montserrat-Regular.ttf */,
 				6B0C20B2265D61110015283C /* Info.plist */,
 				6B0C20D8265D61670015283C /* Model */,
 				6B0C20D7265D61610015283C /* View */,
@@ -137,7 +143,6 @@
 		6B0C20D6265D61590015283C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				6B0C20A5265D61100015283C /* ViewController.swift */,
 				6B0C20DE265D6BA10015283C /* SearchViewController.swift */,
 			);
 			path = Controller;
@@ -147,6 +152,9 @@
 			isa = PBXGroup;
 			children = (
 				6B0C20A7265D61100015283C /* Main.storyboard */,
+				6B0C20E0265D83720015283C /* CustomUIButton.swift */,
+				6B0C20E2265D9E080015283C /* IngredientListTableViewCell.swift */,
+				6B0C20E4265DA59C0015283C /* ListCustomView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -162,8 +170,6 @@
 		6B0C20D9265D61700015283C /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				6B0C20DC265D67290015283C /* Montserrat-SemiBold.ttf */,
-				6B0C20DA265D65FF0015283C /* Montserrat-Regular.ttf */,
 				6B0C20A1265D61100015283C /* AppDelegate.swift */,
 				6B0C20A3265D61100015283C /* SceneDelegate.swift */,
 				6B0C20AD265D61110015283C /* Assets.xcassets */,
@@ -304,9 +310,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B0C20E3265D9E080015283C /* IngredientListTableViewCell.swift in Sources */,
+				6B0C20E5265DA59C0015283C /* ListCustomView.swift in Sources */,
 				6B0C20DF265D6BA10015283C /* SearchViewController.swift in Sources */,
 				6B0C20AC265D61100015283C /* Reciplease.xcdatamodeld in Sources */,
-				6B0C20A6265D61100015283C /* ViewController.swift in Sources */,
+				6B0C20E1265D83720015283C /* CustomUIButton.swift in Sources */,
 				6B0C20A2265D61100015283C /* AppDelegate.swift in Sources */,
 				6B0C20A4265D61100015283C /* SceneDelegate.swift in Sources */,
 			);
