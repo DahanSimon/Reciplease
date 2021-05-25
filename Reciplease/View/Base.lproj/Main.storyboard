@@ -1,24 +1,143 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NCa-tS-czx">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-SemiBold.ttf">
+            <string>Montserrat-SemiBold</string>
+        </array>
+    </customFonts>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Item 2-->
+        <scene sceneID="KCF-Xx-aLY">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <viewController id="cjJ-dP-uku" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3LA-jw-Nkz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <viewLayoutGuide key="safeArea" id="4V2-rq-XMF"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" id="n2n-gm-Vap" userLabel="Favorites"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rtY-Dd-ODD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="301" y="609"/>
+        </scene>
+        <!--Search-->
+        <scene sceneID="E93-Wb-faB">
+            <objects>
+                <viewController id="dpE-vT-igB" userLabel="Search" customClass="SearchViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VrT-Mj-tjG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's in your fridge ?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdJ-nw-vIc">
+                                <rect key="frame" x="20" y="144" width="294" height="30.5"/>
+                                <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter at least 2 ingredients." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Img-LO-6Lt">
+                                <rect key="frame" x="20" y="179.5" width="294" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Try enter some ingredients" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="kXG-fD-hx6">
+                                <rect key="frame" x="35" y="247.5" width="344" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="8zX-3h-xFR"/>
+                                </constraints>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="15"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="dpE-vT-igB" id="rj8-nv-iwb"/>
+                                </connections>
+                            </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Jyk-jc-JOP">
+                                <rect key="frame" x="35" y="317.5" width="344" height="485.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="IngredientCell" id="Jyo-b0-94j">
+                                        <rect key="frame" x="0.0" y="24.5" width="344" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Jyo-b0-94j" id="bw5-DO-cm4">
+                                            <rect key="frame" x="0.0" y="0.0" width="344" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="dpE-vT-igB" id="Ym1-fh-VPu"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ASV-bu-1y2"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="Img-LO-6Lt" firstAttribute="trailing" secondItem="qdJ-nw-vIc" secondAttribute="trailing" id="1he-df-NtW"/>
+                            <constraint firstItem="Jyk-jc-JOP" firstAttribute="trailing" secondItem="kXG-fD-hx6" secondAttribute="trailing" id="7QW-Gt-aTf"/>
+                            <constraint firstItem="kXG-fD-hx6" firstAttribute="centerX" secondItem="VrT-Mj-tjG" secondAttribute="centerX" id="9fd-zC-ofO"/>
+                            <constraint firstItem="qdJ-nw-vIc" firstAttribute="leading" secondItem="ASV-bu-1y2" secondAttribute="leading" constant="20" id="DbQ-yy-dTa"/>
+                            <constraint firstItem="Jyk-jc-JOP" firstAttribute="leading" secondItem="kXG-fD-hx6" secondAttribute="leading" id="H4u-zP-fCY"/>
+                            <constraint firstItem="kXG-fD-hx6" firstAttribute="leading" secondItem="ASV-bu-1y2" secondAttribute="leading" constant="35" id="Inr-zu-hB2"/>
+                            <constraint firstItem="ASV-bu-1y2" firstAttribute="trailing" secondItem="qdJ-nw-vIc" secondAttribute="trailing" constant="100" id="LUs-IS-YX3"/>
+                            <constraint firstItem="Img-LO-6Lt" firstAttribute="top" secondItem="qdJ-nw-vIc" secondAttribute="bottom" constant="5" id="Qwt-1m-dqn"/>
+                            <constraint firstItem="ASV-bu-1y2" firstAttribute="trailing" secondItem="kXG-fD-hx6" secondAttribute="trailing" constant="35" id="V19-CO-Ugm"/>
+                            <constraint firstItem="Img-LO-6Lt" firstAttribute="leading" secondItem="qdJ-nw-vIc" secondAttribute="leading" id="h5i-1W-SXw"/>
+                            <constraint firstItem="kXG-fD-hx6" firstAttribute="top" secondItem="Img-LO-6Lt" secondAttribute="bottom" constant="50" id="j6x-vn-0oT"/>
+                            <constraint firstItem="Jyk-jc-JOP" firstAttribute="top" secondItem="kXG-fD-hx6" secondAttribute="bottom" constant="10" id="l2a-1z-Aiv"/>
+                            <constraint firstItem="qdJ-nw-vIc" firstAttribute="top" secondItem="ASV-bu-1y2" secondAttribute="top" constant="100" id="sjf-C7-vSq"/>
+                            <constraint firstItem="ASV-bu-1y2" firstAttribute="bottom" secondItem="Jyk-jc-JOP" secondAttribute="bottom" constant="10" id="yF6-77-gvY"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 1" selectedImage="magnifyingglass" catalog="system" id="KDx-mZ-Gzi" userLabel="Search"/>
+                    <connections>
+                        <outlet property="searchTextField" destination="kXG-fD-hx6" id="x07-VM-Qh5"/>
+                        <outlet property="tableView" destination="Jyk-jc-JOP" id="99A-o4-5lG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xwv-PP-72z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="a3h-tV-CqI">
+                    <connections>
+                        <action selector="hideKeyboard:" destination="dpE-vT-igB" id="jmp-Fn-d9s"/>
+                        <outlet property="delegate" destination="VrT-Mj-tjG" id="Nt2-El-fYq"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="-399" y="609"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="B9D-02-ptG">
+            <objects>
+                <tabBarController id="NCa-tS-czx" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BHm-rj-8Ff">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="dpE-vT-igB" kind="relationship" relationship="viewControllers" id="ToW-PA-gfz"/>
+                        <segue destination="cjJ-dP-uku" kind="relationship" relationship="viewControllers" id="M0Y-Hq-7lB"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AIG-xh-kie" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-54" y="-120"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

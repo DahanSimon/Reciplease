@@ -16,6 +16,9 @@
 		6B0C20B1265D61110015283C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B0C20AF265D61110015283C /* LaunchScreen.storyboard */; };
 		6B0C20BC265D61120015283C /* RecipleaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C20BB265D61120015283C /* RecipleaseTests.swift */; };
 		6B0C20C7265D61120015283C /* RecipleaseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C20C6265D61120015283C /* RecipleaseUITests.swift */; };
+		6B0C20DB265D65FF0015283C /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6B0C20DA265D65FF0015283C /* Montserrat-Regular.ttf */; };
+		6B0C20DD265D67290015283C /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6B0C20DC265D67290015283C /* Montserrat-SemiBold.ttf */; };
+		6B0C20DF265D6BA10015283C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C20DE265D6BA10015283C /* SearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,9 @@
 		6B0C20C2265D61120015283C /* RecipleaseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecipleaseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B0C20C6265D61120015283C /* RecipleaseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseUITests.swift; sourceTree = "<group>"; };
 		6B0C20C8265D61120015283C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6B0C20DA265D65FF0015283C /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		6B0C20DC265D67290015283C /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
+		6B0C20DE265D6BA10015283C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +88,6 @@
 			isa = PBXGroup;
 			children = (
 				6B0C20A0265D61100015283C /* Reciplease */,
-				6B0C20B2265D61110015283C /* Info.plist */,
 				6B0C20BA265D61120015283C /* RecipleaseTests */,
 				6B0C20C5265D61120015283C /* RecipleaseUITests */,
 				6B0C209F265D61100015283C /* Products */,
@@ -102,6 +107,7 @@
 		6B0C20A0265D61100015283C /* Reciplease */ = {
 			isa = PBXGroup;
 			children = (
+				6B0C20B2265D61110015283C /* Info.plist */,
 				6B0C20D8265D61670015283C /* Model */,
 				6B0C20D7265D61610015283C /* View */,
 				6B0C20D6265D61590015283C /* Controller */,
@@ -132,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				6B0C20A5265D61100015283C /* ViewController.swift */,
+				6B0C20DE265D6BA10015283C /* SearchViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -155,6 +162,8 @@
 		6B0C20D9265D61700015283C /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				6B0C20DC265D67290015283C /* Montserrat-SemiBold.ttf */,
+				6B0C20DA265D65FF0015283C /* Montserrat-Regular.ttf */,
 				6B0C20A1265D61100015283C /* AppDelegate.swift */,
 				6B0C20A3265D61100015283C /* SceneDelegate.swift */,
 				6B0C20AD265D61110015283C /* Assets.xcassets */,
@@ -266,9 +275,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B0C20DB265D65FF0015283C /* Montserrat-Regular.ttf in Resources */,
 				6B0C20B1265D61110015283C /* LaunchScreen.storyboard in Resources */,
 				6B0C20AE265D61110015283C /* Assets.xcassets in Resources */,
 				6B0C20A9265D61100015283C /* Main.storyboard in Resources */,
+				6B0C20DD265D67290015283C /* Montserrat-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +304,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B0C20DF265D6BA10015283C /* SearchViewController.swift in Sources */,
 				6B0C20AC265D61100015283C /* Reciplease.xcdatamodeld in Sources */,
 				6B0C20A6265D61100015283C /* ViewController.swift in Sources */,
 				6B0C20A2265D61100015283C /* AppDelegate.swift in Sources */,
