@@ -82,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				6B0C20A0265D61100015283C /* Reciplease */,
+				6B0C20B2265D61110015283C /* Info.plist */,
 				6B0C20BA265D61120015283C /* RecipleaseTests */,
 				6B0C20C5265D61120015283C /* RecipleaseUITests */,
 				6B0C209F265D61100015283C /* Products */,
@@ -101,14 +102,10 @@
 		6B0C20A0265D61100015283C /* Reciplease */ = {
 			isa = PBXGroup;
 			children = (
-				6B0C20A1265D61100015283C /* AppDelegate.swift */,
-				6B0C20A3265D61100015283C /* SceneDelegate.swift */,
-				6B0C20A5265D61100015283C /* ViewController.swift */,
-				6B0C20A7265D61100015283C /* Main.storyboard */,
-				6B0C20AD265D61110015283C /* Assets.xcassets */,
-				6B0C20AF265D61110015283C /* LaunchScreen.storyboard */,
-				6B0C20B2265D61110015283C /* Info.plist */,
-				6B0C20AA265D61100015283C /* Reciplease.xcdatamodeld */,
+				6B0C20D8265D61670015283C /* Model */,
+				6B0C20D7265D61610015283C /* View */,
+				6B0C20D6265D61590015283C /* Controller */,
+				6B0C20D9265D61700015283C /* Support */,
 			);
 			path = Reciplease;
 			sourceTree = "<group>";
@@ -129,6 +126,41 @@
 				6B0C20C8265D61120015283C /* Info.plist */,
 			);
 			path = RecipleaseUITests;
+			sourceTree = "<group>";
+		};
+		6B0C20D6265D61590015283C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6B0C20A5265D61100015283C /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		6B0C20D7265D61610015283C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6B0C20A7265D61100015283C /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6B0C20D8265D61670015283C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6B0C20AA265D61100015283C /* Reciplease.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6B0C20D9265D61700015283C /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				6B0C20A1265D61100015283C /* AppDelegate.swift */,
+				6B0C20A3265D61100015283C /* SceneDelegate.swift */,
+				6B0C20AD265D61110015283C /* Assets.xcassets */,
+				6B0C20AF265D61110015283C /* LaunchScreen.storyboard */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
