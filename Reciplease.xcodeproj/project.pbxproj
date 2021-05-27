@@ -19,8 +19,13 @@
 		6B0C20DD265D67290015283C /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6B0C20DC265D67290015283C /* Montserrat-SemiBold.ttf */; };
 		6B0C20DF265D6BA10015283C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C20DE265D6BA10015283C /* SearchViewController.swift */; };
 		6B0C20E1265D83720015283C /* CustomUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C20E0265D83720015283C /* CustomUIButton.swift */; };
-		6B0C20E3265D9E080015283C /* IngredientListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C20E2265D9E080015283C /* IngredientListTableViewCell.swift */; };
+		6B0C20E3265D9E080015283C /* IngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C20E2265D9E080015283C /* IngredientCell.swift */; };
 		6B0C20E5265DA59C0015283C /* ListCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0C20E4265DA59C0015283C /* ListCustomView.swift */; };
+		6B475326265E9BD800D977A0 /* Ingerdient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B475325265E9BD800D977A0 /* Ingerdient.swift */; };
+		6B475328265E9EF800D977A0 /* RecipeListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B475327265E9EF800D977A0 /* RecipeListCell.swift */; };
+		6B6BE16A265EA3A100F3B95F /* RecipeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6BE169265EA3A100F3B95F /* RecipeListViewController.swift */; };
+		6B6BE16C265EA6C000F3B95F /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6BE16B265EA6C000F3B95F /* Recipe.swift */; };
+		6BA0D560265EBDBF00C6DBB1 /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA0D55F265EBDBF00C6DBB1 /* RecipeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,8 +64,13 @@
 		6B0C20DC265D67290015283C /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		6B0C20DE265D6BA10015283C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		6B0C20E0265D83720015283C /* CustomUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIButton.swift; sourceTree = "<group>"; };
-		6B0C20E2265D9E080015283C /* IngredientListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientListTableViewCell.swift; sourceTree = "<group>"; };
+		6B0C20E2265D9E080015283C /* IngredientCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCell.swift; sourceTree = "<group>"; };
 		6B0C20E4265DA59C0015283C /* ListCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCustomView.swift; sourceTree = "<group>"; };
+		6B475325265E9BD800D977A0 /* Ingerdient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingerdient.swift; sourceTree = "<group>"; };
+		6B475327265E9EF800D977A0 /* RecipeListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListCell.swift; sourceTree = "<group>"; };
+		6B6BE169265EA3A100F3B95F /* RecipeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListViewController.swift; sourceTree = "<group>"; };
+		6B6BE16B265EA6C000F3B95F /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		6BA0D55F265EBDBF00C6DBB1 /* RecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +154,8 @@
 			isa = PBXGroup;
 			children = (
 				6B0C20DE265D6BA10015283C /* SearchViewController.swift */,
+				6B6BE169265EA3A100F3B95F /* RecipeListViewController.swift */,
+				6BA0D55F265EBDBF00C6DBB1 /* RecipeViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -153,8 +165,9 @@
 			children = (
 				6B0C20A7265D61100015283C /* Main.storyboard */,
 				6B0C20E0265D83720015283C /* CustomUIButton.swift */,
-				6B0C20E2265D9E080015283C /* IngredientListTableViewCell.swift */,
+				6B0C20E2265D9E080015283C /* IngredientCell.swift */,
 				6B0C20E4265DA59C0015283C /* ListCustomView.swift */,
+				6B475327265E9EF800D977A0 /* RecipeListCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -163,6 +176,8 @@
 			isa = PBXGroup;
 			children = (
 				6B0C20AA265D61100015283C /* Reciplease.xcdatamodeld */,
+				6B475325265E9BD800D977A0 /* Ingerdient.swift */,
+				6B6BE16B265EA6C000F3B95F /* Recipe.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -310,13 +325,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B0C20E3265D9E080015283C /* IngredientListTableViewCell.swift in Sources */,
+				6B6BE16A265EA3A100F3B95F /* RecipeListViewController.swift in Sources */,
+				6B475326265E9BD800D977A0 /* Ingerdient.swift in Sources */,
+				6B0C20E3265D9E080015283C /* IngredientCell.swift in Sources */,
 				6B0C20E5265DA59C0015283C /* ListCustomView.swift in Sources */,
 				6B0C20DF265D6BA10015283C /* SearchViewController.swift in Sources */,
 				6B0C20AC265D61100015283C /* Reciplease.xcdatamodeld in Sources */,
+				6BA0D560265EBDBF00C6DBB1 /* RecipeViewController.swift in Sources */,
 				6B0C20E1265D83720015283C /* CustomUIButton.swift in Sources */,
 				6B0C20A2265D61100015283C /* AppDelegate.swift in Sources */,
 				6B0C20A4265D61100015283C /* SceneDelegate.swift in Sources */,
+				6B475328265E9EF800D977A0 /* RecipeListCell.swift in Sources */,
+				6B6BE16C265EA6C000F3B95F /* Recipe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,7 +522,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.simonDahan.Reciplease;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -521,7 +541,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.simonDahan.Reciplease;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

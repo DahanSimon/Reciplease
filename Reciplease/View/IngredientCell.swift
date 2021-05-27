@@ -7,7 +7,7 @@
 
 import UIKit
 
-class IngredientListTableViewCell: UITableViewCell {
+class IngredientCell: UITableViewCell {
     
     @IBOutlet weak var customView: UIView!
     
