@@ -11,12 +11,19 @@ import UIKit
 
 class RecipeListViewController: UIViewController {
     var recipeList: [Recipe] = Recipe.all
-    
+    var selectedRowIndex = 0
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     @IBAction func unwindToWelcome(segue:UIStoryboardSegue) { }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "recipeDetailsSegue"{
+            let recipeVC = segue.destination as? RecipeViewController
+            recipeVC?.recipeIndex = self.selectedRowIndex
+        }
+    }
 }
 
 extension RecipeListViewController: UITableViewDataSource {
@@ -40,3 +47,8 @@ extension RecipeListViewController: UITableViewDataSource {
     }
 }
 
+extension RecipeListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.selectedRowIndex = indexPath.row
+    }
+}

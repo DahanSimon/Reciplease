@@ -17,6 +17,7 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         self.tableView.rowHeight = 70
         findButton.isHidden = true
+        resetAllRecords(in: "Recipe")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -31,6 +32,11 @@ class SearchViewController: UIViewController {
         recipe.likes = 500
         recipe.name = "Pizza"
         recipe.recipeDescription = "Tomato Sauce, Cheese, Basil."
+        recipe.imageName = "pizza"
+        let recipe2 = Recipe(context: AppDelegate.viewContext)
+        recipe2.likes = 1000
+        recipe2.name = "Pasta"
+        recipe2.recipeDescription = "Tomato Sauce, Cheese."
         try? AppDelegate.viewContext.save()
     }
     
@@ -49,6 +55,8 @@ class SearchViewController: UIViewController {
             findButton.isHidden = false
         }
     }
+    
+    
 }
 
 extension SearchViewController: UITableViewDataSource {
