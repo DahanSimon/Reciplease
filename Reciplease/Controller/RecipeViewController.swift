@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class RecipeViewController: UIViewController {
 
@@ -34,6 +35,11 @@ class RecipeViewController: UIViewController {
     @IBAction func dismiss() {
         dismiss(animated: true, completion: nil)
     }
+    @IBAction func getDirectionsButtonTapped(_ sender: Any) {
+        if let url = URL(string: "http://www.designeatrepeat.com/2012/01/pizza-party/") {
+            showTutorial(url: url)
+        }
+    }
     
     @IBAction func likeButtonTapped(_ sender: Any) {
         if selectedRecipe.isLiked {
@@ -50,6 +56,15 @@ class RecipeViewController: UIViewController {
         self.recipeImage.image = UIImage(named: recipe.imageName ?? "Pizza")
         self.recipeTitle.text = recipe.name
     }
+    
+    private func showTutorial(url: URL) {
+        let config = SFSafariViewController.Configuration()
+        config.entersReaderIfAvailable = true
+        
+        let vc = SFSafariViewController(url: url, configuration: config)
+        present(vc, animated: true)
+    }
+    
 }
 
 extension RecipeViewController: UITableViewDataSource {
