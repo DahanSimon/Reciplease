@@ -10,18 +10,19 @@ import SafariServices
 
 class RecipeViewController: UIViewController {
 
-    var recipeList: [Recipe] = Recipe.all
+    var recipeList: [Founds] = []
+    var ingredientList: [String] = []
     var recipeIndex = 0
-    var selectedRecipe: Recipe {
-        let recipe = recipeList[recipeIndex]
-        recipe.ingredientList = [Ingredient(named: "Tomato Sauce"), Ingredient(named: "Cheese"), Ingredient(named: "Pizza Dough")]
+    var selectedRecipe: ApiRecipe {
+        let recipe = recipeList[recipeIndex].recipe
         return recipe
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.rowHeight = 70
-        if selectedRecipe.isLiked {
+        self.ingredientList = self.selectedRecipe.ingredientLines
+        if selectedRecipe.isLiked ?? false {
             likedButton.isSelected = true
         }
         configure(recipe: selectedRecipe)
@@ -36,25 +37,28 @@ class RecipeViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     @IBAction func getDirectionsButtonTapped(_ sender: Any) {
-        if let url = URL(string: "http://www.designeatrepeat.com/2012/01/pizza-party/") {
+        if let url = URL(string: selectedRecipe.url) {
             showTutorial(url: url)
         }
     }
     
     @IBAction func likeButtonTapped(_ sender: Any) {
-        if selectedRecipe.isLiked {
-            self.selectedRecipe.isLiked = false
-            likedButton.isSelected = false
-        } else {
-            self.selectedRecipe.isLiked = true
-            likedButton.isSelected = true
-        }
-        try? AppDelegate.viewContext.save()
+//        if selectedRecipe.isLiked ?? false {
+//            self.selectedRecipe.isLiked = false
+//            likedButton.isSelected = false
+//        } else {
+//            self.selectedRecipe.isLiked = true
+//            likedButton.isSelected = true
+//        }
+//        try? AppDelegate.viewContext.save()
     }
     
-    private func configure(recipe: Recipe) {
-        self.recipeImage.image = UIImage(named: recipe.imageName ?? "Pizza")
-        self.recipeTitle.text = recipe.name
+    private func configure(recipe: ApiRecipe) {
+        guard let url = URL(string: recipe.image) else {
+            return
+        }
+        self.recipeImage.load(url: url)
+        self.recipeTitle.text = recipe.label
     }
     
     private func showTutorial(url: URL) {
@@ -74,7 +78,7 @@ extension RecipeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return selectedRecipe.ingredientList.count
+        return ingredientList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -82,7 +86,21 @@ extension RecipeViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.textLabel?.text = selectedRecipe.ingredientList[indexPath.row].name
+        cell.textLabel?.text = ingredientList[indexPath.row]
         return cell
+    }
+}
+
+extension UIImageView {
+    func load(url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
+        }
     }
 }

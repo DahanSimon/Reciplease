@@ -7,8 +7,7 @@
 
 import Foundation
 
-
-struct Ingredient {
+struct Ingredient2 {
     var name: String
     init(named name: String) {
         self.name = name

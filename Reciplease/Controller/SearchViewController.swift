@@ -17,28 +17,41 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         self.tableView.rowHeight = 70
         findButton.isHidden = true
-//        resetAllRecords(in: "Recipe")
+        resetAllRecords(in: "Recipe")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         displaySearchButton()
     }
     
-    var ingredients: [Ingredient] = []
+    var recipeList: RecipeList?
+    var ingredients: [Ingredient2] = []
     
     
     private func createRecipe() {
-        let recipe = Recipe(context: AppDelegate.viewContext)
-        recipe.likes = 500
-        recipe.name = "Pizza"
-        recipe.recipeDescription = "Tomato Sauce, Cheese, Basil."
-        recipe.imageName = "pizza"
-        let recipe2 = Recipe(context: AppDelegate.viewContext)
-        recipe2.likes = 1000
-        recipe2.name = "Pasta"
-        recipe2.recipeDescription = "Tomato Sauce, Cheese."
-        recipe2.imageName = "pasta"
-        try? AppDelegate.viewContext.save()
+//        let recipe = Recipe(context: AppDelegate.viewContext)
+//        recipe.likes = 500
+//        recipe.name = "Pizza"
+//        recipe.recipeDescription = "Tomato Sauce, Cheese, Basil."
+//        recipe.imageName = "pizza"
+//        let recipe2 = Recipe(context: AppDelegate.viewContext)
+//        recipe2.likes = 1000
+//        recipe2.name = "Pasta"
+//        recipe2.recipeDescription = "Tomato Sauce, Cheese."
+//        recipe2.imageName = "pasta"
+        
+        let ingredientName: String = "Tomato"
+        let recipe = ApiRecipe(label: "Pizza", image: "https://www.edamam.com/web-img/fd6/fd6fc1464f324b25f16e24688da668f5.jpg", url: "https://www.example.com", yield: 2,  ingredientLines: ["250gr Pizza Dough", "100gr Tomato Sacue", "100gr Mozzarella"], ingredients: [Ingredient(text: "Pizza Dough", weight: 255.0), Ingredient(text: "Tomato Sauce", weight: 100.0), Ingredient(text: "Mozzarella", weight: 100.0)])
+        let founds = Founds(recipe: recipe)
+        self.recipeList = RecipeList(q: ingredientName, from: 0, to: 5, more: false, count: 1, hits: [founds])
+//        try? AppDelegate.viewContext.save()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "findSegue"{
+            let recipeVC = segue.destination as? RecipeListViewController
+            recipeVC?.recipeList = recipeList!.hits
+        }
     }
     
     @IBAction func findRecipe(_ sender: Any) {
@@ -96,7 +109,7 @@ extension SearchViewController: UITextFieldDelegate {
             return true
         }
         
-        let newIngredient = Ingredient(named: ingredientName)
+        let newIngredient = Ingredient2(named: ingredientName)
         ingredients.append(newIngredient)
         tableView.reloadData()
 

@@ -8,16 +8,16 @@
 import Foundation
 import CoreData
 
-class Recipe: NSManagedObject {
-    static var all: [Recipe] {
-        let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
-        guard let recipes = try? AppDelegate.viewContext.fetch(request) else {
-            return []
-        }
-        return recipes
-    }
-    
-    var ingredientList: [Ingredient] = []
+class Recipe:NSManagedObject {
+//    static var all: [Recipe] {
+//        let request: NSFetchRequest<Recipe> = Recipe.fetchRequest()
+//        guard let recipes = try? AppDelegate.viewContext.fetch(request) else {
+//            return []
+//        }
+//        return recipes
+//    }
+//    
+//    var ingredientList: [Ingredient2] = []
 }
 
 func resetAllRecords(in entity : String) // entity = Your_Entity_Name
@@ -35,3 +35,4 @@ func resetAllRecords(in entity : String) // entity = Your_Entity_Name
             print ("There was an error")
         }
     }
+
