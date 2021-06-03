@@ -10,14 +10,19 @@ import SafariServices
 
 class RecipeViewController: UIViewController {
 
-    var recipeList: [Founds] = []
+    var recipeList: [Founds]? = []
     var ingredientList: [String] = []
     var recipeIndex = 0
     var selectedRecipe: ApiRecipe {
-        let recipe = recipeList[recipeIndex].recipe
-        return recipe
+        let recipe = recipeList?[recipeIndex].recipe
+        return recipe!
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        guard let url = URL(string: selectedRecipe.image) else {
+            return
+        }
+        self.recipeImage.load(url: url)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.rowHeight = 70
@@ -25,6 +30,7 @@ class RecipeViewController: UIViewController {
         if selectedRecipe.isLiked ?? false {
             likedButton.isSelected = true
         }
+        
         configure(recipe: selectedRecipe)
     }
     
@@ -44,20 +50,19 @@ class RecipeViewController: UIViewController {
     
     @IBAction func likeButtonTapped(_ sender: Any) {
 //        if selectedRecipe.isLiked ?? false {
-//            self.selectedRecipe.isLiked = false
+//            self.recipeList[recipeIndex].recipe.isLiked = false
 //            likedButton.isSelected = false
+//            var recipe = Recipe(context: AppDelegate.viewContext)
+//            recipe.recipeDetails = self.recipeList[recipeIndex].recipe.
 //        } else {
-//            self.selectedRecipe.isLiked = true
+//            self.recipeList[recipeIndex].recipe.isLiked = true
 //            likedButton.isSelected = true
 //        }
 //        try? AppDelegate.viewContext.save()
     }
     
     private func configure(recipe: ApiRecipe) {
-        guard let url = URL(string: recipe.image) else {
-            return
-        }
-        self.recipeImage.load(url: url)
+        
         self.recipeTitle.text = recipe.label
     }
     

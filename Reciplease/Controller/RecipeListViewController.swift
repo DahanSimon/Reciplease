@@ -11,21 +11,7 @@ import UIKit
 
 class RecipeListViewController: UIViewController {
     
-    var recipeList: [Founds] = []
-//    var recipes: [ApiRecipe] {
-//        var recipes: [RecipeList] = []
-//        let tabBar = self.tabBarController?.tabBar.selectedItem?.tag
-//        if tabBar == 1 {
-//            for recipe in recipeList {
-//                if recipe.isLiked {
-//                    recipes.append(recipe)
-//                }
-//            }
-//            return recipes
-//        } else {
-//            return Recipe.all
-//        }
-//    }
+    var recipeList: [Founds]? = Search.recipeList?.hits
     
     var selectedRowIndex = 0
     @IBOutlet var tableView: UITableView!
@@ -48,9 +34,6 @@ class RecipeListViewController: UIViewController {
         }
     }
     
-    deinit {
-        print("deinited")
-    }
 }
 
 extension RecipeListViewController: UITableViewDataSource {
@@ -60,17 +43,17 @@ extension RecipeListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return recipeList.count
+        return recipeList?.count ?? 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath) as? RecipeListCell else {
             return UITableViewCell()
         }
-        let recipe = recipeList[indexPath.row].recipe
+        let recipe = recipeList?[indexPath.row].recipe
         
         
-        cell.configure(name: recipe.label, description: recipe.label, likes: 500, imageName: recipe.image)
+        cell.configure(name: recipe?.label ?? "nil", description: recipe?.label ?? "nil", likes: 500, imageUrl: URL(string: recipe?.image ?? "pizza")!)
         return cell
     }
 }

@@ -30,10 +30,10 @@ class RecipeListCell: UITableViewCell {
         recipeListView.layer.shadowOpacity = 2.0
     }
     
-    func configure(name: String, description: String, likes: Int, imageName: String) {
+    func configure(name: String, description: String, likes: Int, imageUrl: URL) {
         recipeDescription.text = description
         recipeTitle.text = name
         likeLabel.text = String(likes) + " likes"
-        recipePicture.image = UIImage(named: imageName)
+        recipePicture.load(url: imageUrl)
     }
 }

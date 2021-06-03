@@ -18,7 +18,7 @@ struct RecipeList: Codable {
 
 // MARK: - Hit
 struct Founds: Codable {
-    let recipe: ApiRecipe
+    var recipe: ApiRecipe
 }
 
 // MARK: - Recipe
