@@ -10,27 +10,37 @@ import SafariServices
 
 class RecipeViewController: UIViewController {
 
-    var recipeList: [Founds]? = []
-    var ingredientList: [String] = []
-    var recipeIndex = 0
-    var selectedRecipe: ApiRecipe {
-        let recipe = recipeList?[recipeIndex].recipe
-        return recipe!
+    var recipeList: [Recipe]?
+    
+    var ingredientsList: [String]? {
+        return selectedRecipe?.ingredients
     }
+
+    var recipeIndex = 0
+    var selectedRecipe: Recipe? {
+        if let recipeList = recipeList {
+            return recipeList[recipeIndex]
+        }
+        return nil
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
-        guard let url = URL(string: selectedRecipe.image) else {
+        guard let imageUrl =  selectedRecipe?.imageUrl, let url = URL(string: imageUrl) else {
             return
         }
+        let isLiked = RecipeCoreData.all.contains(where: { recipe in
+            if recipe.name == selectedRecipe?.name {
+                return true
+            }
+            return false
+        })
+        likedButton.isSelected = isLiked
         self.recipeImage.load(url: url)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.rowHeight = 70
-        self.ingredientList = self.selectedRecipe.ingredientLines
-        if selectedRecipe.isLiked ?? false {
-            likedButton.isSelected = true
-        }
-        
         configure(recipe: selectedRecipe)
     }
     
@@ -39,37 +49,48 @@ class RecipeViewController: UIViewController {
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     
-    @IBAction func dismiss() {
-        dismiss(animated: true, completion: nil)
-    }
     @IBAction func getDirectionsButtonTapped(_ sender: Any) {
-        if let url = URL(string: selectedRecipe.url) {
-            showTutorial(url: url)
+        if let directionsUrl = selectedRecipe?.directionUrl, let url = URL(string: directionsUrl) {
+            showDirections(url: url)
         }
     }
     
     @IBAction func likeButtonTapped(_ sender: Any) {
-//        if selectedRecipe.isLiked ?? false {
-//            self.recipeList[recipeIndex].recipe.isLiked = false
-//            likedButton.isSelected = false
-//            var recipe = Recipe(context: AppDelegate.viewContext)
-//            recipe.recipeDetails = self.recipeList[recipeIndex].recipe.
-//        } else {
-//            self.recipeList[recipeIndex].recipe.isLiked = true
-//            likedButton.isSelected = true
-//        }
-//        try? AppDelegate.viewContext.save()
-    }
-    
-    private func configure(recipe: ApiRecipe) {
+        likedButton.isSelected = !likedButton.isSelected
+        let isLiked = RecipeCoreData.all.contains(where: { recipe in
+            if recipe.name == selectedRecipe?.name {
+                return true
+            }
+            return false
+        })
         
-        self.recipeTitle.text = recipe.label
+        if isLiked, let likedRecipe = selectedRecipe {
+            removeRecipe(at: likedRecipe.name!)
+            try? AppDelegate.viewContext.save()
+            return
+        }
+        
+        guard let selectedRecipe = selectedRecipe else {
+            return
+        }
+        
+        let recipe = RecipeCoreData(context: AppDelegate.viewContext)
+        recipe.image = selectedRecipe.imageUrl
+        recipe.name = selectedRecipe.name
+        recipe.totalTime = Int32(selectedRecipe.totalTime!)
+        recipe.url = selectedRecipe.directionUrl
+        recipe.yield = Int32(selectedRecipe.yield!)
+        recipe.ingredients = selectedRecipe.ingredients!.joined(separator: ",")
+        try? AppDelegate.viewContext.save()
     }
     
-    private func showTutorial(url: URL) {
+    private func configure(recipe: Recipe?) {
+        self.recipeTitle.text = recipe?.name
+    }
+    
+    private func showDirections(url: URL) {
         let config = SFSafariViewController.Configuration()
         config.entersReaderIfAvailable = true
-        
         let vc = SFSafariViewController(url: url, configuration: config)
         present(vc, animated: true)
     }
@@ -83,15 +104,20 @@ extension RecipeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ingredientList.count
+        guard let numberOfRows = self.ingredientsList?.count else {
+            return 0
+        }
+        return numberOfRows
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath) as? IngredientCell else {
             return UITableViewCell()
         }
-        
-        cell.textLabel?.text = ingredientList[indexPath.row]
+        guard let ingredient = self.ingredientsList?[indexPath.row] else {
+            return cell
+        }
+        cell.textLabel?.text = ingredient
         return cell
     }
 }

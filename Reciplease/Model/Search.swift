@@ -8,7 +8,7 @@
 import Foundation
 
 class Search {
-    static var recipeList: RecipeList? = nil
+    static var recipeList: [Recipe] = []
     var api: RecipeSearchProtocol
     
     init(api: RecipeSearchProtocol) {
@@ -16,16 +16,15 @@ class Search {
     }
     
     func getRecipes(ingredients: [String], callback: @escaping (Result<RecipeList?, SearchErrors>) -> Void) {
+        Search.recipeList = []
         api.getRecipes(ingredients: ingredients) { recipeList in
-            Search.recipeList = nil
             switch recipeList {
-            
-            case .success(let success):
-                Search.recipeList = success
+            case .success(_):
+                callback(recipeList)
             case .failure(_):
-                break
+                callback(recipeList)
             }
-            callback(recipeList)
+            
         }
     }
 }

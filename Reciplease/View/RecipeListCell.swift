@@ -12,7 +12,7 @@ class RecipeListCell: UITableViewCell {
     @IBOutlet weak var recipeListView: UIView!
     @IBOutlet weak var recipePicture: UIImageView!
     @IBOutlet weak var recipeDescription: UILabel!
-    @IBOutlet weak var likeLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var recipeTitle: UILabel!
     
     override func awakeFromNib() {
@@ -30,10 +30,15 @@ class RecipeListCell: UITableViewCell {
         recipeListView.layer.shadowOpacity = 2.0
     }
     
-    func configure(name: String, description: String, likes: Int, imageUrl: URL) {
+    func configure(name: String, description: String, duration: Int, imageUrl: URL) {
         recipeDescription.text = description
         recipeTitle.text = name
-        likeLabel.text = String(likes) + " likes"
+        if duration > 0 {
+            timeLabel.isHidden = false
+            timeLabel.text = String(duration) + " minutes"
+        } else {
+            timeLabel.isHidden = true
+        }
         recipePicture.load(url: imageUrl)
     }
 }

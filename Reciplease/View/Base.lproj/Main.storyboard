@@ -78,7 +78,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="x Likes" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ojH-Fn-5lB" userLabel="Like Label">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="x minutes" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000000000001" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ojH-Fn-5lB" userLabel="Like Label">
                                                     <rect key="frame" x="284" y="55.5" width="100" height="24.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="100" id="OqF-q4-hol"/>
@@ -87,7 +87,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000000000001" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mwY-Ta-w90" userLabel="Recipe Title">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000000000001" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mwY-Ta-w90" userLabel="Recipe Title">
                                                     <rect key="frame" x="120" y="0.0" width="274" height="24.5"/>
                                                     <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="20"/>
                                                     <nil key="textColor"/>
@@ -97,6 +97,7 @@
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="ojH-Fn-5lB" secondAttribute="bottom" id="64n-me-hks"/>
+                                                <constraint firstItem="ojH-Fn-5lB" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Aeb-Vc-1tq" secondAttribute="bottom" constant="10" id="7Ab-9C-c10"/>
                                                 <constraint firstItem="Aeb-Vc-1tq" firstAttribute="top" secondItem="mwY-Ta-w90" secondAttribute="bottom" constant="5" id="9yG-Fy-S65"/>
                                                 <constraint firstAttribute="trailing" secondItem="mwY-Ta-w90" secondAttribute="trailing" id="Ldd-AW-qPa"/>
                                                 <constraint firstItem="Aeb-Vc-1tq" firstAttribute="leading" secondItem="jyy-qC-S2p" secondAttribute="trailing" constant="20" id="NfL-Gn-01F"/>
@@ -119,11 +120,11 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="likeLabel" destination="ojH-Fn-5lB" id="fDD-iQ-YuX"/>
                                     <outlet property="recipeDescription" destination="Aeb-Vc-1tq" id="zmv-RT-1Pa"/>
                                     <outlet property="recipeListView" destination="KLB-OA-eqt" id="J6t-w3-vZt"/>
                                     <outlet property="recipePicture" destination="jyy-qC-S2p" id="xQY-D1-go2"/>
                                     <outlet property="recipeTitle" destination="mwY-Ta-w90" id="U6g-mw-cdF"/>
+                                    <outlet property="timeLabel" destination="ojH-Fn-5lB" id="fDD-iQ-YuX"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

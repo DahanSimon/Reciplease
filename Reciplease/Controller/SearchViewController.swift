@@ -8,9 +8,12 @@
 import UIKit
 
 class SearchViewController: UIViewController {
+    
     var api: SearchService?
     var search: Search?
-    var founds: [Founds] = []
+    var recipeList: RecipeList?
+    var ingredients: [String] = []
+    
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var findButton: CustomUIButton!
@@ -21,64 +24,48 @@ class SearchViewController: UIViewController {
         self.search = Search(api: api!)
         self.tableView.rowHeight = 70
         findButton.isHidden = true
-        resetAllRecords(in: "Recipe")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         displaySearchButton()
     }
-    
-    var recipeList: RecipeList?
-    var ingredients: [String] = []
-    
-    
-    private func createRecipe() {
-        
-        for _ in 0...5 {
-            let recipe = ApiRecipe(label: "Pizza", image: "https://www.edamam.com/web-img/fd6/fd6fc1464f324b25f16e24688da668f5.jpg", url: "https://www.example.com", yield: 2,  ingredientLines: ["250gr Pizza Dough", "100gr Tomato Sacue", "100gr Mozzarella"], ingredients: [Ingredient(text: "Pizza Dough", weight: 255.0), Ingredient(text: "Tomato Sauce", weight: 100.0), Ingredient(text: "Mozzarella", weight: 100.0)])
-            founds.append(Founds(recipe: recipe))
-        }
-        let ingredientName = "tomato"
-        self.recipeList = RecipeList(q: ingredientName, from: 0, to: 5, more: false, count: 1, hits: founds)
-        //        try? AppDelegate.viewContext.save()
+
+    @IBAction func findRecipe(_ sender: Any) {
+        getRecipes()
+        resetView()
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "findSegue"{
-//            let recipeVC = segue.destination as? RecipeListViewController
-//            recipeVC?.recipeList = recipeList!.hits
-//        }
-//    }
+    fileprivate func resetView() {
+        self.ingredients = []
+        self.searchTextField.text = ""
+        tableView.reloadData()
+    }
     
     fileprivate func getRecipes() {
-        //        createRecipe()
         search?.getRecipes(ingredients: self.ingredients, callback: { result  in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let successResult):
                     self.recipeList = successResult
+                    for apiRecipe in successResult!.hits {
+                        let recipe = Recipe(apiRecipe: apiRecipe.recipe, coreDataRecipe: nil)
+                        Search.recipeList.append(recipe)
+                    }
                     self.performSegue(withIdentifier: "findSegue", sender: nil)
-                case .failure(_): break
+                case .failure(_):
+                    self.presentAlert(message: "An error occured please try again")
+                    break
                     
                 }
             }
-            
         })
     }
     
-    @IBAction func findRecipe(_ sender: Any) {
-        getRecipes()
-        self.ingredients = []
-        tableView.reloadData()
-        
-    }
-    
-    private func displaySearchButton() {
-        if ingredients.count < 2 {
-            findButton.isHidden = true
-        } else {
-            findButton.isHidden = false
-        }
+    private func presentAlert(message: String) {
+        let alertVC = UIAlertController(title: "Erreur", message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alertVC.addAction(action)
+        self.present(alertVC, animated: true, completion: nil)
     }
 }
 
@@ -126,6 +113,14 @@ extension SearchViewController: UITextFieldDelegate {
         
         displaySearchButton()
         return true
+    }
+    
+    private func displaySearchButton() {
+        if ingredients.count < 2 {
+            findButton.isHidden = true
+        } else {
+            findButton.isHidden = false
+        }
     }
     
     @IBAction func hideKeyboard(_ sender: UITapGestureRecognizer) {

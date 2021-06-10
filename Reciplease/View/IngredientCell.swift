@@ -15,6 +15,7 @@ class IngredientCell: UITableViewCell {
         super.awakeFromNib()
         self.textLabel?.textAlignment = .center
         self.textLabel?.font = UIFont(name: "Montserrat", size: 18)
+        self.textLabel?.adjustsFontSizeToFitWidth = true
         addShadow()
     }
     

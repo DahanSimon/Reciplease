@@ -29,7 +29,8 @@ struct ApiRecipe: Codable {
     let yield: Int
     let ingredientLines: [String]
     let ingredients: [Ingredient]
-    var isLiked: Bool?
+//    var isLiked: Bool = false
+    let totalTime: Int
 }
 
 // MARK: - Ingredient

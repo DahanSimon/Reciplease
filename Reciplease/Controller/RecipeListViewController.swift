@@ -10,14 +10,24 @@ import UIKit
 
 
 class RecipeListViewController: UIViewController {
+    // A essayer de mettre dans le model
+    var recipeList: [Recipe]? {
+        if tabBarIndex == 0 {
+            return Search.recipeList
+        } else if tabBarIndex == 1 {
+            return RecipeCoreData.all
+        }
+        return nil
+    }
     
-    var recipeList: [Founds]? = Search.recipeList?.hits
-    
+    var tabBarIndex = 0
     var selectedRowIndex = 0
     @IBOutlet var tableView: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
         tableView?.reloadData()
+        // A debaler
+        self.tabBarIndex = self.tabBarController?.tabBar.selectedItem?.tag ?? 0
     }
     
     override func viewDidLoad() {
@@ -43,17 +53,26 @@ extension RecipeListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return recipeList?.count ?? 1
+        guard let recipes = recipeList else {
+            return 0
+        }
+        return recipes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath) as? RecipeListCell else {
             return UITableViewCell()
+        }        
+        return createCell(cell: cell, recipeIndex: indexPath.row)
+    }
+    
+    func createCell(cell: RecipeListCell, recipeIndex: Int) -> RecipeListCell {
+        guard let recipe = recipeList?[recipeIndex], let name = recipe.name,
+              let totalTime = recipe.totalTime, let imageUrl = recipe.imageUrl else {
+            return cell
         }
-        let recipe = recipeList?[indexPath.row].recipe
         
-        
-        cell.configure(name: recipe?.label ?? "nil", description: recipe?.label ?? "nil", likes: 500, imageUrl: URL(string: recipe?.image ?? "pizza")!)
+        cell.configure(name: name, description: name, duration: totalTime, imageUrl: URL(string: imageUrl)!)
         return cell
     }
 }

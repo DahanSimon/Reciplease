@@ -10,16 +10,15 @@ import Foundation
 
 class MockSearchService: RecipeSearchProtocol {
     
+    
     var expectedResult: RecipeList?
     
     init(expectedResult: RecipeList?) {
         self.expectedResult = expectedResult
     }
     
-    func getRecipes(ingredients: [String], callback: @escaping (Result<RecipeList?, Error>) -> Void) {
-        let result = Result {
-            expectedResult
-        }
+    func getRecipes(ingredients: [String], callback: @escaping (Result<RecipeList?, SearchErrors>) -> Void) {
+        let result = Result<RecipeList?, SearchErrors>.success(expectedResult)
         callback(result)
     }
 }

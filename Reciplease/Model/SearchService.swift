@@ -8,6 +8,7 @@
 import Foundation
 
 class SearchService: RecipeSearchProtocol {
+    private let numberOfRecipesToLoad: String = "20"
     private var task: URLSessionDataTask?
     private var searchSession = URLSession(configuration: .default)
     var ingredients: [String] = []
@@ -16,7 +17,7 @@ class SearchService: RecipeSearchProtocol {
         let request = createRequest()
         task?.cancel()
         task = searchSession.dataTask(with: request) { (data, response, error) in
-            DispatchQueue.main.async { [self] in
+            DispatchQueue.main.async { 
                 guard let data = data, error == nil else {
                     callback(Result.failure(SearchErrors.apiError))
                     return
@@ -39,7 +40,7 @@ class SearchService: RecipeSearchProtocol {
     
     private var requestUrl: URL {
         guard let ingredientsString = self.ingredients.joined(separator: ",").addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return URL(string: "")! }
-        let url = URL(string: "https://api.edamam.com/search" + "?q=" + ingredientsString + "&app_id=d1ea0569&from=0&to=5&app_key=d242706587ab1a0de5418308397af347")!
+        let url = URL(string: "https://api.edamam.com/search" + "?q=" + ingredientsString + "&app_id=d1ea0569&from=0&to=\(numberOfRecipesToLoad)&app_key=d242706587ab1a0de5418308397af347")!
         return url
     }
     
