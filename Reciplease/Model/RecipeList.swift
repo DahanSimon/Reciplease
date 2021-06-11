@@ -23,13 +23,13 @@ struct Founds: Codable {
 
 // MARK: - Recipe
 struct ApiRecipe: Codable {
+    let uri: String
     let label: String
     let image: String
     let url: String
     let yield: Int
     let ingredientLines: [String]
     let ingredients: [Ingredient]
-//    var isLiked: Bool = false
     let totalTime: Int
 }
 

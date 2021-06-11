@@ -23,30 +23,41 @@ public class RecipeCoreData: NSManagedObject {
     }
 }
 
-func removeRecipe(at name: String){
+func saveRecipe(likedRecipe: Recipe) {
+    let recipe = RecipeCoreData(context: AppDelegate.viewContext)
+    recipe.uri = likedRecipe.uri
+    recipe.image = likedRecipe.imageUrl
+    recipe.name = likedRecipe.name
+    recipe.totalTime = Int32(likedRecipe.totalTime!)
+    recipe.url = likedRecipe.directionUrl
+    recipe.yield = Int32(likedRecipe.yield!)
+    recipe.ingredients = likedRecipe.ingredients!.joined(separator: ",")
+    try? AppDelegate.viewContext.save()
+}
+
+func removeRecipe(uri: String){
     let request: NSFetchRequest<RecipeCoreData> = RecipeCoreData.fetchRequest()
-    request.predicate = NSPredicate(format: "name == %@", name)
+    request.predicate = NSPredicate(format: "uri == %@", uri)
     guard let filteredRecipes = try? AppDelegate.viewContext.fetch(request) else {
         return
     }
-    // Boucle for pour supprimer tout les resultats
     for recipe in filteredRecipes {
         AppDelegate.persistentContainer.viewContext.delete(recipe)
+        try? AppDelegate.viewContext.save()
     }
 }
 
-func resetAllRecords(in entity : String)
-{
+func resetAllRecords(in entity : String) {
     let context = AppDelegate.viewContext
     let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
     let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
-    do
-        {
+    do {
             try context.execute(deleteRequest)
             try context.save()
-        }
-    catch
-    {
+    }
+    catch {
         print ("There was an error")
     }
 }
+
+

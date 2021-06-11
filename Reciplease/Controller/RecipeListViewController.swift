@@ -7,8 +7,6 @@
 
 import UIKit
 
-
-
 class RecipeListViewController: UIViewController {
     // A essayer de mettre dans le model
     var recipeList: [Recipe]? {
@@ -26,8 +24,9 @@ class RecipeListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         tableView?.reloadData()
-        // A debaler
-        self.tabBarIndex = self.tabBarController?.tabBar.selectedItem?.tag ?? 0
+        if let tabBarTag = self.tabBarController?.tabBar.selectedItem?.tag {
+            self.tabBarIndex =  tabBarTag
+        }
     }
     
     override func viewDidLoad() {

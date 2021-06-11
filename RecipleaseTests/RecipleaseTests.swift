@@ -10,18 +10,17 @@ import XCTest
 
 class RecipleaseTests: XCTestCase {
 
-    func testSearchRecipeWithOneIngredientShouldGetRecipeList() {
+    func testSearchRecipeWithOneIngredientShouldGetRecipeArray() {
         // Given
         let ingredients: [String] = ["Tomato","Cheese","Pizza Dough"]
-        let recipe = ApiRecipe(label: "Pizza", image: "pizza", url: "example.com", yield: 2,  ingredientLines: ["250gr Pizza Dough", "100gr Tomato Sacue", "100gr Mozzarella"], ingredients: [Ingredient(text: "Pizza Dough", weight: 255.0), Ingredient(text: "Tomato Sauce", weight: 100.0), Ingredient(text: "Mozzarella", weight: 100.0)], totalTime: 50)
-        let founds = Founds(recipe: recipe)
+        let recipe = ApiRecipe(uri: "example.com", label: "Pizza", image: "pizza", url: "example.com", yield: 2,  ingredientLines: ["250gr Pizza Dough", "100gr Tomato Sacue", "100gr Mozzarella"], ingredients: [Ingredient(text: "Pizza Dough", weight: 255.0), Ingredient(text: "Tomato Sauce", weight: 100.0), Ingredient(text: "Mozzarella", weight: 100.0)], totalTime: 50)
         
-        let searchRecipeMock = MockSearchService(expectedResult: RecipeList(q: ingredients.joined(), from: 0, to: 5, more: false, count: 1, hits: [founds]))
+        let searchRecipeMock = MockSearchService(expectedResult: [Recipe(apiRecipe: recipe, coreDataRecipe: nil)])
         let searchService = Search(api: searchRecipeMock)
         // When
         let expectation = XCTestExpectation(description: "Wait for recipeList to be acquired")
         
-        var recipeList: RecipeList?
+        var recipeList: [Recipe]?
         searchService.getRecipes(ingredients: ingredients) { response in
             DispatchQueue.main.async {
                 switch response {
@@ -36,5 +35,33 @@ class RecipleaseTests: XCTestCase {
 
         wait(for: [expectation], timeout: 0.10)
         XCTAssertNotNil(recipeList)
+    }
+    
+    func testSearchRecipeWithWrongIngredientsShouldGetError() {
+        // Given
+        let ingredients: [String] = [" "," "," "]
+        let searchRecipeMock = MockSearchService(expectedResult: [])
+        let searchService = Search(api: searchRecipeMock)
+        // When
+        let expectation = XCTestExpectation(description: "Wait for recipeList to be acquired")
+        
+        var recipeList: [Recipe]?
+        var error: SearchErrors?
+        searchService.getRecipes(ingredients: ingredients) { response in
+            DispatchQueue.main.async {
+                switch response {
+                case .success(let success):
+                    recipeList = success
+                    expectation.fulfill()
+                case .failure(let resultError):
+                    error = resultError
+                    expectation.fulfill()
+                }
+            }
+        }
+
+        wait(for: [expectation], timeout: 0.10)
+        XCTAssertNotNil(error)
+        XCTAssertEqual(recipeList?.count, 0)
     }
 }

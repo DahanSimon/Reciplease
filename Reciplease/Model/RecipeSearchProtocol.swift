@@ -8,5 +8,5 @@
 import Foundation
 
 protocol RecipeSearchProtocol {
-    func getRecipes(ingredients: [String], callback: @escaping (Result<RecipeList?, SearchErrors>) -> Void)
+    func getRecipes(ingredients: [String], callback: @escaping (Result<[Recipe], SearchErrors>) -> Void)
 }

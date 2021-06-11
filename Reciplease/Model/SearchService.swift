@@ -8,11 +8,13 @@
 import Foundation
 
 class SearchService: RecipeSearchProtocol {
+    // Change this value to the desired amount of recipe to load
     private let numberOfRecipesToLoad: String = "20"
+    
     private var task: URLSessionDataTask?
     private var searchSession = URLSession(configuration: .default)
     var ingredients: [String] = []
-    func getRecipes(ingredients: [String], callback: @escaping (Result<RecipeList?, SearchErrors>) -> Void) {
+    func getRecipes(ingredients: [String], callback: @escaping (Result<[Recipe], SearchErrors>) -> Void) {
         self.ingredients = ingredients
         let request = createRequest()
         task?.cancel()
@@ -29,7 +31,12 @@ class SearchService: RecipeSearchProtocol {
                 }
                 
                 if let responseJSON = try? JSONDecoder().decode(RecipeList.self, from: data) {
-                    callback(Result.success(responseJSON))
+                    var recipes: [Recipe] = []
+                    for apiRecipe in responseJSON.hits {
+                        let recipe = Recipe(apiRecipe: apiRecipe.recipe, coreDataRecipe: nil)
+                        recipes.append(recipe)
+                    }
+                    callback(Result.success(recipes))
                 } else {
                     callback(Result.failure(SearchErrors.apiError))
                 }
@@ -57,4 +64,5 @@ class SearchService: RecipeSearchProtocol {
 
 enum SearchErrors: Error {
     case apiError
+    case noRecipeFound
 }

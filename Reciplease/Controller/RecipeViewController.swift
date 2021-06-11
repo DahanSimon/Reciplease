@@ -13,7 +13,10 @@ class RecipeViewController: UIViewController {
     var recipeList: [Recipe]?
     
     var ingredientsList: [String]? {
-        return selectedRecipe?.ingredients
+        if let recipe = selectedRecipe {
+            return recipe.ingredients
+        }
+        return nil
     }
 
     var recipeIndex = 0
@@ -50,7 +53,7 @@ class RecipeViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     @IBAction func getDirectionsButtonTapped(_ sender: Any) {
-        if let directionsUrl = selectedRecipe?.directionUrl, let url = URL(string: directionsUrl) {
+        if let recipe = selectedRecipe, let directionsUrl = recipe.directionUrl, let url = URL(string: directionsUrl) {
             showDirections(url: url)
         }
     }
@@ -63,25 +66,15 @@ class RecipeViewController: UIViewController {
             }
             return false
         })
-        
-        if isLiked, let likedRecipe = selectedRecipe {
-            removeRecipe(at: likedRecipe.name!)
-            try? AppDelegate.viewContext.save()
+        if isLiked, let likedRecipe = selectedRecipe, let uri = likedRecipe.uri {
+            removeRecipe(uri: uri)
             return
         }
         
         guard let selectedRecipe = selectedRecipe else {
             return
         }
-        
-        let recipe = RecipeCoreData(context: AppDelegate.viewContext)
-        recipe.image = selectedRecipe.imageUrl
-        recipe.name = selectedRecipe.name
-        recipe.totalTime = Int32(selectedRecipe.totalTime!)
-        recipe.url = selectedRecipe.directionUrl
-        recipe.yield = Int32(selectedRecipe.yield!)
-        recipe.ingredients = selectedRecipe.ingredients!.joined(separator: ",")
-        try? AppDelegate.viewContext.save()
+        saveRecipe(likedRecipe: selectedRecipe)
     }
     
     private func configure(recipe: Recipe?) {

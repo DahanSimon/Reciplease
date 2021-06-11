@@ -8,54 +8,57 @@
 import UIKit
 
 class SearchViewController: UIViewController {
-    
-    var api: SearchService?
-    var search: Search?
-    var recipeList: RecipeList?
+    var search: Search = Search(api: SearchService())
+    var recipeList: [Recipe]?
     var ingredients: [String] = []
     
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var findButton: CustomUIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.api = SearchService()
-        self.search = Search(api: api!)
         self.tableView.rowHeight = 70
         findButton.isHidden = true
+//        resetAllRecords(in: "RecipeCoreData")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         displaySearchButton()
+        activityIndicator.isHidden = true
     }
-
+    
     @IBAction func findRecipe(_ sender: Any) {
         getRecipes()
         resetView()
     }
     
-    fileprivate func resetView() {
+    func resetView() {
         self.ingredients = []
         self.searchTextField.text = ""
+        findButton.isHidden = true
+        activityIndicator.isHidden = true
         tableView.reloadData()
     }
     
     fileprivate func getRecipes() {
-        search?.getRecipes(ingredients: self.ingredients, callback: { result  in
+        activityIndicator.isHidden = false
+        findButton.isHidden = true
+        search.getRecipes(ingredients: self.ingredients, callback: { result  in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let successResult):
                     self.recipeList = successResult
-                    for apiRecipe in successResult!.hits {
-                        let recipe = Recipe(apiRecipe: apiRecipe.recipe, coreDataRecipe: nil)
-                        Search.recipeList.append(recipe)
-                    }
                     self.performSegue(withIdentifier: "findSegue", sender: nil)
-                case .failure(_):
-                    self.presentAlert(message: "An error occured please try again")
+                case .failure(let error):
+                    switch error {
+                    case .apiError:
+                        self.presentAlert(message: "An error occured please try again")
+                    case .noRecipeFound:
+                        self.presentAlert(message: "Sorry no recipes founded for these ingredients. \n Maybe you should go shopping !")
+                    }
                     break
-                    
                 }
             }
         })
@@ -95,14 +98,12 @@ extension SearchViewController: UITableViewDataSource {
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
-    
 }
 
 extension SearchViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         textField.resignFirstResponder()
-        
         guard let ingredientName = searchTextField.text else {
             return true
         }
