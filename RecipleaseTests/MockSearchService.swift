@@ -10,12 +10,20 @@ import Foundation
 
 class MockSearchService: RecipeSearchProtocol {
     var expectedResult: [Recipe]
-    init(expectedResult: [Recipe]) {
+    var responseCode: Int
+    init(expectedResult: [Recipe], responseCode: Int) {
         self.expectedResult = expectedResult
+        self.responseCode = responseCode
     }
     
     func getRecipes(ingredients: [String], callback: @escaping (Result<[Recipe], SearchErrors>) -> Void) {
-        let result = Result<[Recipe], SearchErrors>.success(expectedResult)
+        var result: Result<[Recipe], SearchErrors> {
+            if responseCode == 200 {
+                return .success(expectedResult)
+            } else {
+                return.failure(.apiError)
+            }
+        }
         callback(result)
     }
 }

@@ -28,7 +28,6 @@ class Search {
             case .failure(_):
                 callback(recipeList)
             }
-            
         }
     }
 }
