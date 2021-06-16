@@ -6,11 +6,10 @@
 //
 
 import UIKit
-
+import Alamofire
 class SearchViewController: UIViewController {
     var search: Search = Search(api: SearchService())
     var ingredients: [String] = []
-    
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
