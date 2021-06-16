@@ -9,34 +9,28 @@ import UIKit
 import SafariServices
 
 class RecipeViewController: UIViewController {
-
-    var recipeList: [Recipe]?
-    
+    let coreDataTask = RecipeCoreData.coreDataStack
+    let coreDataService = CoreDataService(managedObjectContext: RecipeCoreData.coreDataStack.mainContext, coreDataStack: RecipeCoreData.coreDataStack)
+    var selectedRecipe: Recipe?
     var ingredientsList: [String]? {
         if let recipe = selectedRecipe {
             return recipe.ingredients
         }
         return nil
     }
-
-    var recipeIndex = 0
-    var selectedRecipe: Recipe? {
-        if let recipeList = recipeList {
-            return recipeList[recipeIndex]
-        }
-        return nil
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        guard let imageUrl =  selectedRecipe?.imageUrl, let url = URL(string: imageUrl) else {
-            return
-        }
-        let isLiked = RecipeCoreData.all.contains(where: { recipe in
-            if recipe.name == selectedRecipe?.name {
+    var isLiked: Bool {
+        return RecipeCoreData.all.contains(where: { recipe in
+            if recipe.uri == selectedRecipe?.uri {
                 return true
             }
             return false
         })
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        guard let imageUrl =  selectedRecipe?.imageUrl, let url = URL(string: imageUrl) else {
+            return
+        }
+        
         likedButton.isSelected = isLiked
         self.recipeImage.load(url: url)
     }
@@ -44,7 +38,7 @@ class RecipeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.rowHeight = 70
-        configure(recipe: selectedRecipe)
+        self.recipeTitle.text = selectedRecipe?.name
     }
     
     @IBOutlet weak var recipeTitle: UILabel!
@@ -60,34 +54,35 @@ class RecipeViewController: UIViewController {
     
     @IBAction func likeButtonTapped(_ sender: Any) {
         likedButton.isSelected = !likedButton.isSelected
-        let isLiked = RecipeCoreData.all.contains(where: { recipe in
-            if recipe.name == selectedRecipe?.name {
-                return true
-            }
-            return false
-        })
-        if isLiked, let likedRecipe = selectedRecipe, let uri = likedRecipe.uri {
-            removeRecipe(uri: uri)
-            return
-        }
-        
         guard let selectedRecipe = selectedRecipe else {
             return
         }
-        saveRecipe(likedRecipe: selectedRecipe)
+        
+        if isLiked, let uri = selectedRecipe.uri {
+            let removed = coreDataService.removeRecipe(uri: uri)
+            if removed == false {
+                presentAlert(message: "Sorry an error occured. Please try again")
+            }
+            return
+        }
+        
+        let saved = coreDataService.saveRecipe(likedRecipe: selectedRecipe, coreDataTask: coreDataTask)
+        if saved == false {
+            presentAlert(message: "Sorry an error occured. Please try again")
+        }
     }
-    
-    private func configure(recipe: Recipe?) {
-        self.recipeTitle.text = recipe?.name
+    private func presentAlert(message: String) {
+        let alertVC = UIAlertController(title: "Erreur", message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alertVC.addAction(action)
+        self.present(alertVC, animated: true, completion: nil)
     }
-    
     private func showDirections(url: URL) {
         let config = SFSafariViewController.Configuration()
         config.entersReaderIfAvailable = true
         let vc = SFSafariViewController(url: url, configuration: config)
         present(vc, animated: true)
     }
-    
 }
 
 extension RecipeViewController: UITableViewDataSource {

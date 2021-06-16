@@ -9,7 +9,6 @@ import UIKit
 
 class SearchViewController: UIViewController {
     var search: Search = Search(api: SearchService())
-    var recipeList: [Recipe]?
     var ingredients: [String] = []
     
     @IBOutlet weak var searchTextField: UITextField!
@@ -48,8 +47,7 @@ class SearchViewController: UIViewController {
         search.getRecipes(ingredients: self.ingredients, callback: { result  in
             DispatchQueue.main.async {
                 switch result {
-                case .success(let successResult):
-                    self.recipeList = successResult
+                case .success(_):
                     self.performSegue(withIdentifier: "findSegue", sender: nil)
                 case .failure(let error):
                     switch error {

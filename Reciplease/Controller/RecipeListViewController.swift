@@ -8,7 +8,6 @@
 import UIKit
 
 class RecipeListViewController: UIViewController {
-    // A essayer de mettre dans le model
     var recipeList: [Recipe]? {
         if tabBarIndex == 0 {
             return Search.recipeList
@@ -33,16 +32,12 @@ class RecipeListViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    @IBAction func unwindToWelcome(segue:UIStoryboardSegue) { }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "recipeDetailsSegue"{
             let recipeVC = segue.destination as? RecipeViewController
-            recipeVC?.recipeIndex = self.selectedRowIndex
-            recipeVC?.recipeList = recipeList
+            recipeVC?.selectedRecipe = recipeList?[self.selectedRowIndex]
         }
     }
-    
 }
 
 extension RecipeListViewController: UITableViewDataSource {

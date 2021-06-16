@@ -36,4 +36,8 @@ struct Recipe {
             self.ingredients = ingredientsArray
         }
     }
+    init(apiRecipe: ApiRecipe){
+        
+    }
+    
 }
