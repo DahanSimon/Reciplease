@@ -23,7 +23,6 @@ class CoreDataServiceTests: XCTestCase {
     }
 
     func testAddRecipe() {
-        coreDataService.resetAllRecords(in: "RecipeCoreData")
         var all: [Recipe]? {
             let request: NSFetchRequest<RecipeCoreData> = RecipeCoreData.fetchRequest()
             guard let coreDataRecipes = try? coreDataStack.mainContext.fetch(request) else {

@@ -15,6 +15,10 @@ open class CoreDataStack {
     let modelURL = Bundle.main.url(forResource: modelName, withExtension: "momd")!
     return NSManagedObjectModel(contentsOf: modelURL)!
   }()
+    // swiftlint:enable force_unwrapping
+
+    public init() {
+    }
     
   public lazy var mainContext: NSManagedObjectContext = {
     return self.storeContainer.viewContext
