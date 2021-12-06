@@ -35,7 +35,7 @@ public class CoreDataService {
     func removeRecipe(uri: String) -> Bool {
         let request: NSFetchRequest<RecipeCoreData> = RecipeCoreData.fetchRequest()
         request.predicate = NSPredicate(format: "uri == %@", uri)
-        guard let filteredRecipes = try? coreDataStack.mainContext.fetch(request) else {
+        guard let filteredRecipes = try? coreDataStack.mainContext.fetch(request), filteredRecipes.count != 0 else {
             return false
         }
         for recipe in filteredRecipes {
@@ -43,9 +43,7 @@ public class CoreDataService {
             do {
                 try  coreDataStack.mainContext.save()
                 
-            } catch {
-                return false
-            }
+            } catch { return false }
         }
         return true
     }
@@ -57,10 +55,7 @@ public class CoreDataService {
         do {
             try context.execute(deleteRequest)
             try context.save()
-        }  catch {
-            print ("There was an error")
-            return false
-        }
+        }  catch { return false }
         return true
     }
 }

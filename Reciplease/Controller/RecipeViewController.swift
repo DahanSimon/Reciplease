@@ -63,12 +63,11 @@ class RecipeViewController: UIViewController {
             if removed == false {
                 presentAlert(message: "Sorry an error occured. Please try again")
             }
-            return
-        }
-        
-        let saved = coreDataService.saveRecipe(likedRecipe: selectedRecipe, coreDataTask: coreDataTask)
-        if saved == false {
-            presentAlert(message: "Sorry an error occured. Please try again")
+        } else {
+            let saved = coreDataService.saveRecipe(likedRecipe: selectedRecipe, coreDataTask: coreDataTask)
+            if saved == false {
+                presentAlert(message: "Sorry an error occured. Please try again")
+            }
         }
     }
     private func presentAlert(message: String) {
@@ -111,6 +110,8 @@ extension RecipeViewController: UITableViewDataSource {
 }
 
 extension UIImageView {
+    
+    //This method download an image from an URL
     func load(url: URL) {
         DispatchQueue.global().async { [weak self] in
             if let data = try? Data(contentsOf: url) {

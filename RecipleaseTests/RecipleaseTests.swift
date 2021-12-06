@@ -87,9 +87,12 @@ class RecipleaseTests: XCTestCase {
                 }
             }
         }
+        print(RecipeCoreData.all.count)
 
         wait(for: [expectation], timeout: 0.10)
         XCTAssertNotNil(error)
         XCTAssertNil(recipeList)
     }
+    
+    
 }

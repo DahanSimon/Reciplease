@@ -62,4 +62,14 @@ class CoreDataServiceTests: XCTestCase {
         XCTAssertTrue(removedAll)
         XCTAssertTrue(saved)
     }
+    
+    func testRemoveRecipeWithNoURIShouldGetAnError() {
+        var recipe = Recipe(apiRecipe: nil, coreDataRecipe: RecipeCoreData(context: coreDataStack.mainContext))
+        recipe.ingredients = ["Cheese", "Banana"]
+        recipe.uri = "URI"
+        let saved = coreDataService.saveRecipe(likedRecipe: recipe, coreDataTask: coreDataStack)
+        let removed = coreDataService.removeRecipe(uri: "NIL")
+        XCTAssertFalse(removed)
+        XCTAssertTrue(saved)
+    }
 }

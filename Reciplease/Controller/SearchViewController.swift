@@ -36,7 +36,6 @@ class SearchViewController: UIViewController {
         self.ingredients = []
         self.searchTextField.text = ""
         findButton.isHidden = true
-        activityIndicator.isHidden = true
         tableView.reloadData()
     }
     
@@ -48,6 +47,7 @@ class SearchViewController: UIViewController {
                 switch result {
                 case .success(_):
                     self.performSegue(withIdentifier: "findSegue", sender: nil)
+                    self.activityIndicator.isHidden = true
                 case .failure(let error):
                     switch error {
                     case .apiError:
@@ -55,6 +55,7 @@ class SearchViewController: UIViewController {
                     case .noRecipeFound:
                         self.presentAlert(message: "Sorry no recipes founded for these ingredients. \n Maybe you should go shopping !")
                     }
+                    self.activityIndicator.isHidden = true
                     break
                 }
             }

@@ -15,8 +15,6 @@ open class CoreDataStack {
     let modelURL = Bundle.main.url(forResource: modelName, withExtension: "momd")!
     return NSManagedObjectModel(contentsOf: modelURL)!
   }()
-    // swiftlint:enable force_unwrapping
-
     public init() {
     }
     
@@ -28,7 +26,7 @@ open class CoreDataStack {
     let container = NSPersistentContainer(name: CoreDataStack.modelName, managedObjectModel: CoreDataStack.model)
     container.loadPersistentStores { _, error in
       if let error = error as NSError? {
-        fatalError("Unresolved error \(error), \(error.userInfo)")
+          fatalError("Unresolved error \(error), \(error.userInfo)")
       }
     }
     return container
@@ -38,8 +36,6 @@ open class CoreDataStack {
     do {
       try mainContext.save()
         return true
-    } catch _ as NSError {
-        return false
-    }
+    } catch _ as NSError { return false }
   }
 }
