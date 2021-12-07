@@ -33,14 +33,13 @@ class SearchService: RecipeSearchProtocol {
             }
         }
     }
-    
     private var requestUrl: URL {
         guard let ingredientsString = self.ingredients.joined(separator: ",").addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return URL(string: "")! }
-        let url = URL(string: "https://api.edamam.com/search" + "?q=" + ingredientsString + "&app_id=d1ea0569&from=0&to=\(numberOfRecipesToLoad)&app_key=d242706587ab1a0de5418308397af347")!
+        let url = URL(string: "https://api.edamam.com/search" +
+                      "?q=" + ingredientsString + "&app_id=d1ea0569&from=0&to=\(numberOfRecipesToLoad)&app_key=d242706587ab1a0de5418308397af347")!
         return url
     }
 }
-
 
 enum SearchErrors: Error {
     case apiError

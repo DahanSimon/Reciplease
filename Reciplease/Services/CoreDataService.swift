@@ -18,9 +18,8 @@ public class CoreDataService {
       self.managedObjectContext = managedObjectContext
       self.coreDataStack = coreDataStack
     }
-    
     func saveRecipe(likedRecipe: Recipe, coreDataTask: CoreDataStack) -> Bool {
-        let recipe = RecipeCoreData(context:  coreDataTask.mainContext)
+        let recipe = RecipeCoreData(context: coreDataTask.mainContext)
         recipe.uri = likedRecipe.uri
         recipe.image = likedRecipe.imageUrl
         recipe.name = likedRecipe.name
@@ -29,13 +28,12 @@ public class CoreDataService {
         recipe.yield = Int32(likedRecipe.yield!)
         recipe.ingredients = likedRecipe.ingredients!.joined(separator: ",")
         return coreDataStack.saveContext()
-        
     }
 
     func removeRecipe(uri: String) -> Bool {
         let request: NSFetchRequest<RecipeCoreData> = RecipeCoreData.fetchRequest()
         request.predicate = NSPredicate(format: "uri == %@", uri)
-        guard let filteredRecipes = try? coreDataStack.mainContext.fetch(request), filteredRecipes.count != 0 else {
+        guard let filteredRecipes = try? coreDataStack.mainContext.fetch(request), !filteredRecipes.isEmpty else {
             return false
         }
         for recipe in filteredRecipes {
@@ -48,14 +46,14 @@ public class CoreDataService {
         return true
     }
 
-    func resetAllRecords(in entity : String) -> Bool {
+    func resetAllRecords(in entity: String) -> Bool {
         let context = CoreDataStack().mainContext
         let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
         do {
             try context.execute(deleteRequest)
             try context.save()
-        }  catch { return false }
+        } catch { return false }
         return true
     }
 }

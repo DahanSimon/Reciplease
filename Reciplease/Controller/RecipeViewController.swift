@@ -111,7 +111,7 @@ extension RecipeViewController: UITableViewDataSource {
 
 extension UIImageView {
     
-    //This method download an image from an URL
+    // This method download an image from an URL
     func load(url: URL) {
         DispatchQueue.global().async { [weak self] in
             if let data = try? Data(contentsOf: url) {

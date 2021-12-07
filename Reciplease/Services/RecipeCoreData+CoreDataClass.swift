@@ -11,7 +11,6 @@ import CoreData
 
 public class RecipeCoreData: NSManagedObject {
     static var coreDataStack = CoreDataStack()
-    
     // This computed var collects all the recipes from the database
     static var all: [Recipe] {
             let request: NSFetchRequest<RecipeCoreData> = RecipeCoreData.fetchRequest()

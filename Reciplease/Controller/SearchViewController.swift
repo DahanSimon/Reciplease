@@ -14,19 +14,16 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var findButton: CustomUIButton!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.rowHeight = 70
         findButton.isHidden = true
 //        resetAllRecords(in: "RecipeCoreData")
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         displaySearchButton()
         activityIndicator.isHidden = true
     }
-    
     @IBAction func findRecipe(_ sender: Any) {
         getRecipes()
         resetView()
@@ -38,7 +35,6 @@ class SearchViewController: UIViewController {
         findButton.isHidden = true
         tableView.reloadData()
     }
-    
     fileprivate func getRecipes() {
         activityIndicator.isHidden = false
         findButton.isHidden = true
@@ -56,7 +52,7 @@ class SearchViewController: UIViewController {
                         self.presentAlert(message: "Sorry no recipes founded for these ingredients. \n Maybe you should go shopping !")
                     }
                     self.activityIndicator.isHidden = true
-                    break
+//                    break
                 }
             }
         })

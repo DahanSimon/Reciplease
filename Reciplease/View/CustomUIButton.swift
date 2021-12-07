@@ -8,8 +8,7 @@
 import UIKit
 
 class CustomUIButton: UIButton {
-    var cornerRadius:CGFloat = 10
-    
+    var cornerRadius: CGFloat = 10
     override func awakeFromNib() {
         super.awakeFromNib()
         self.layer.cornerRadius = cornerRadius

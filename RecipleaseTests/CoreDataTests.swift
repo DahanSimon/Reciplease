@@ -13,8 +13,6 @@ class CoreDataServiceTests: XCTestCase {
 
     var coreDataStack: CoreDataStack = TestCoreDataStack()
     var coreDataService: CoreDataService!
-    
-
     override func setUp() {
       super.setUp()
         

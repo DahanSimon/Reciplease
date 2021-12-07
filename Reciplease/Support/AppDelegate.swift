@@ -84,7 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func saveContext () {
         let coreDataTask = CoreDataStack()
-        let context = coreDataTask.mainContext //persistentContainer.viewContext
+        let context = coreDataTask.mainContext // persistentContainer.viewContext
         if context.hasChanges {
             do {
                 try context.save()
@@ -98,4 +98,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 }
-

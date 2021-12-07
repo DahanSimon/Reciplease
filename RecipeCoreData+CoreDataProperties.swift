@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 extension RecipeCoreData {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<RecipeCoreData> {
@@ -25,6 +24,6 @@ extension RecipeCoreData {
 
 }
 
-extension RecipeCoreData : Identifiable {
+extension RecipeCoreData: Identifiable {
 
 }

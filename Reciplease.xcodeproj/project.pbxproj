@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -265,7 +265,6 @@
 				39F7046A28CB47140AED9769 /* Pods-RecipleaseTests.debug.xcconfig */,
 				03F20123B9B57C65BAB93536 /* Pods-RecipleaseTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -277,6 +276,7 @@
 			buildConfigurationList = 6B0C20CB265D61120015283C /* Build configuration list for PBXNativeTarget "Reciplease" */;
 			buildPhases = (
 				F06C507B30852BC8511CFE6E /* [CP] Check Pods Manifest.lock */,
+				6B3C8DB4275F99950032F75A /* SwifLint */,
 				6B0C209A265D61100015283C /* Sources */,
 				6B0C209B265D61100015283C /* Frameworks */,
 				6B0C209C265D61100015283C /* Resources */,
@@ -418,6 +418,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Reciplease/Pods-Reciplease-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		6B3C8DB4275F99950032F75A /* SwifLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwifLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		84A7E51FAE366D3956187F50 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

@@ -18,12 +18,10 @@ class IngredientCell: UITableViewCell {
         self.textLabel?.adjustsFontSizeToFitWidth = true
         addShadow()
     }
-    
     private func addShadow() {
         customView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7).cgColor
         customView.layer.shadowRadius = 2.0
         customView.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
         customView.layer.shadowOpacity = 2.0
     }
-    
 }

@@ -20,7 +20,7 @@ class Search {
         api.getRecipes(ingredients: ingredients) { recipeList in
             switch recipeList {
             case .success(let response):
-                if response.count == 0 {
+                if response.isEmpty {
                     callback(Result.failure(SearchErrors.noRecipeFound))
                 }
                 Search.recipeList = response
